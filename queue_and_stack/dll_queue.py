@@ -19,7 +19,7 @@ class Queue:
     def dequeue(self):
         # pass
         # remove item from queue
-        if self.size > 0 and self.size != 0:
+        if self.size > 0:
             self.size -= 1
             return self.storage.remove_from_head()
         else:

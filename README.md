@@ -1,4 +1,4 @@
-## Ulor Pascal
+## Ulor Pascal Project
 
 # Data Structures 
 

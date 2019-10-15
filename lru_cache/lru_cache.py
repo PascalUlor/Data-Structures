@@ -15,6 +15,7 @@ class LRUCache:
         self.limit = limit
         self.list = DoublyLinkedList()
         self.storage = dict()
+        self.count = 0
 
 
     """
@@ -29,9 +30,8 @@ class LRUCache:
         if not key in self.storage:
             return
         value = self.storage[key]
-        if value is not None:
-            node = self.list.find(key)
-            self.list.move_to_front(node)
+        node = self.list.find(key)
+        self.list.move_to_front(node)
         return value
 
     """
@@ -49,6 +49,7 @@ class LRUCache:
         if not key in self.storage:
             self.storage[key] = value
             self.list.add_to_head(key)
+            self.count += 1
         else:
             self.storage[key] = value
             node = self.list.find(key)
@@ -56,3 +57,4 @@ class LRUCache:
         if self.list.length > self.limit:
             del self.storage[self.list.tail.value]
             self.list.remove_from_tail()
+            self.count -= 1

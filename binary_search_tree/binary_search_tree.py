@@ -1,7 +1,7 @@
-# import sys
-# sys.path.append('../queue_and_stack')
-# from dll_queue import Queue
-# from dll_stack import Stack
+import sys
+sys.path.append('../queue_and_stack')
+from dll_queue import Queue
+from dll_stack import Stack
 
 
 class BinarySearchTree:
@@ -9,6 +9,8 @@ class BinarySearchTree:
         self.value = value #root
         self.left = None
         self.right = None
+        self.stack = Stack()
+        self.queue = Queue()
 
     # Insert the given value into the tree
     def insert(self, value):
@@ -71,17 +73,65 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        # pass
+        current_node = node
+        print(current_node.value)
+        if current_node.right is not None:
+            self.stack.push(current_node.right)
+        elif current_node.left is not None:
+            self.stack.push(current_node.left)
+        
+        if not self.stack.len():
+            return
+        self.in_order_print(self.stack.pop())
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # pass
+        # use a queue data structure
+        current_node = node
+        # enqueue the starting node on to the queue
+        self.queue.enqueue(current_node)
+        # loop while the queue has data
+        while self.queue.len() > 0:
+            # dequeue the current it em off the queue
+            self.queue.dequeue()
+            # print the current value
+            print(current_node)
+            # if the current node has a left child
+            if current_node.left:
+                # enqueue the left child on to the queue
+                self.queue.enqueue(current_node.left)
+            # if the current node has a right child
+            if current_node.right:
+                # enqueue right child on to the queue
+                self.queue.enqueue(current_node.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # pass
+        # pass
+        # use a queue data structure
+        current_node = node
+        # enqueue the starting node on to the queue
+        self.stack.push(current_node)
+        # loop while the queue has data
+        while self.stack.len() > 0:
+            # dequeue the current it em off the queue
+            self.stack.pop()
+            # print the current value
+            print(current_node)
+            # if the current node has a left child
+            if current_node.left:
+                # enqueue the left child on to the queue
+                self.stack.push(current_node.left)
+            # if the current node has a right child
+            if current_node.right:
+                # enqueue right child on to the queue
+                self.stack.push(current_node.right)
+
 
     # STRETCH Goals -------------------------
     # Note: Research may be required

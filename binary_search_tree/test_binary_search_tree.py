@@ -62,6 +62,7 @@ class BinarySearchTreeTests(unittest.TestCase):
         # Debug calls to Print() in functions will cause failure
 
         stdout_ = sys.stdout  # Keep previous value
+        print("Starting in_order_print")
         sys.stdout = io.StringIO()
 
         self.bst = BinarySearchTree(1)
@@ -78,21 +79,25 @@ class BinarySearchTreeTests(unittest.TestCase):
         output = sys.stdout.getvalue()
         self.assertEqual(output, "1\n2\n3\n4\n5\n6\n7\n8\n")
 
+        print("Starting bft_print")
         sys.stdout = io.StringIO()
         self.bst.bft_print(self.bst)
         output = sys.stdout.getvalue()
         self.assertEqual(output, "1\n8\n5\n3\n7\n2\n4\n6\n")
 
+        print("Starting dft_print")
         sys.stdout = io.StringIO()
         self.bst.dft_print(self.bst)
         output = sys.stdout.getvalue()
         self.assertEqual(output, "1\n8\n5\n7\n6\n3\n4\n2\n")
 
+        print("Starting pre_order_print")
         sys.stdout = io.StringIO()
         self.bst.pre_order_dft(self.bst)
         output = sys.stdout.getvalue()
         self.assertEqual(output, "1\n8\n5\n3\n2\n4\n7\n6\n")
 
+        print("Starting post_order_print")
         sys.stdout = io.StringIO()
         self.bst.post_order_dft(self.bst)
         output = sys.stdout.getvalue()
